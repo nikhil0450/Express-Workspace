@@ -11,6 +11,7 @@ const mockUsers = [
   { id: 3, userName: "Adam789", fullName: "Adam Den" },
 ];
 
+// Get
 app.get("/", (request, response) => {
   response.status(201).send({ msg: "Hello world" });
 });
@@ -44,6 +45,7 @@ app.get("/api/users", (request, response) => {
   return response.send(mockUsers);
 });
 
+// Post
 app.post("/api/users", (request, response)=>{
     // console.log(request.body);
     const { body } = request;
@@ -53,6 +55,18 @@ app.post("/api/users", (request, response)=>{
     }
     mockUsers.push(newUser)
     return response.status(201).send(newUser)
+})
+
+// Put 
+app.put("/api/users/:id", (request, response)=>{
+    const { body, params: { id } } = request;
+    const parsedId = parseInt(id);
+    if(isNaN(parsedId)) return response.sendStatus(400);
+    const findUserIndex = mockUsers.findIndex((user)=> user.id === parsedId)
+    // if the findIndex() is unable to find the index of user in array, then it will return -1, hence below condition applies
+    if(findUserIndex < 0) return response.sendStatus(404);
+    mockUsers[findUserIndex] = {id: parsedId, ...body}
+    return response.sendStatus(200);
 })
 
 app.listen(PORT, () => {
