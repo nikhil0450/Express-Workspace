@@ -1,4 +1,4 @@
-// HTTP METHODS
+// <------HTTP METHODS------>
 
 /* 
 
@@ -100,7 +100,7 @@ app.listen(PORT, () => {
 });
 
 
-// Middleware
+// <-----Middleware----->
 
 import express, { request, response } from "express";
 
