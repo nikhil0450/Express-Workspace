@@ -1,5 +1,6 @@
 import express, { request, response } from "express";
-import { query, validationResult, body, matchedData } from "express-validator";
+import { query, validationResult, body, matchedData, checkSchema } from "express-validator";
+import { validationSchemas } from "./utils/validationSchemas.mjs"
 
 const app = express();
 app.use(express.json());
@@ -78,22 +79,23 @@ app.get(
 // Post
 app.post(
   "/api/users",
-  body("userName")
-    .notEmpty()
-    .withMessage("userName cannot be empty")
-    .isString()
-    .withMessage("userName must be a string")
-    .isLength({ min: 3, max: 15 })
-    .withMessage("userName must be atleast 3 to 15 characters"),
-    [ 
-      // for multiple validations 
-      body("fullName")
-      .notEmpty()
-      .withMessage("fullName cannot be empty")
-      .isString()
-      .withMessage("fullName must be a string")
-      .isLength({ min: 5, max: 30 })
-      .withMessage("fullName must be atleast 5 to 30 characters")],
+  // body("userName")
+  //   .notEmpty()
+  //   .withMessage("userName cannot be empty")
+  //   .isString()
+  //   .withMessage("userName must be a string")
+  //   .isLength({ min: 3, max: 15 })
+  //   .withMessage("userName must be atleast 3 to 15 characters"),
+  //   [ 
+  //     // for multiple validations 
+  //     body("fullName")
+  //     .notEmpty()
+  //     .withMessage("fullName cannot be empty")
+  //     .isString()
+  //     .withMessage("fullName must be a string")
+  //     .isLength({ min: 5, max: 30 })
+  //     .withMessage("fullName must be atleast 5 to 30 characters")],
+  checkSchema(validationSchemas) ,
   (request, response) => {
     // console.log(request.body);
     const result = validationResult(request);
