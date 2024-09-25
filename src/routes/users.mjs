@@ -5,7 +5,7 @@ import {
   query,
   matchedData,
 } from "express-validator";
-import { mockUsers } from "../utils/constants.mjs";
+import { mockUsers } from "../utils/userConstants.mjs";
 import { validationSchemas } from "../utils/validationSchemas.mjs";
 import handleFindUserIndex from "../utils/middlewares.mjs";
 

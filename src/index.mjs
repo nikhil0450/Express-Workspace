@@ -1,15 +1,14 @@
 import express from "express";
-import usersRouter from "./routes/users.mjs";
-import handleFindUserIndex from "./utils/middlewares.mjs"
-import loggingMiddleware from "./utils/loggingMiddleware";
+import routes from "./routes/routes.mjs";
+import loggingMiddleware from "./utils/loggingMiddleware.mjs";
 
 const app = express();
 app.use(express.json());
-app.use(usersRouter)
-
-const PORT = process.env.PORT || 3000;
 
 app.use(loggingMiddleware);
+app.use(routes);
+
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   console.log(`Running on Port ${PORT}`);

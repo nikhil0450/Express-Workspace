@@ -1,4 +1,4 @@
-import { mockUsers } from "./constants.mjs"
+import { mockUsers } from "./userConstants.mjs"
 
 const handleFindUserIndex = (request, response, next) => {
     const {
