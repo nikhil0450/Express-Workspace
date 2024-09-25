@@ -1,5 +1,6 @@
 import express from "express";
 import usersRouter from "./routes/users.mjs";
+import handleFindUserIndex from "./utils/middlewares.mjs"
 
 const app = express();
 app.use(express.json());
